@@ -1,17 +1,18 @@
 {
-  "name": "Design Tokens",
-  "id": "888356646278934516",
+  "name": "Kobber figma export",
+  "id": "1544402405217391431",
   "api": "1.0.0",
   "main": "dist/plugin.js",
   "ui": "dist/ui.html",
+  "capabilities": [],
+  "enableProposedApi": false,
   "editorType": [
     "figma"
   ],
   "networkAccess": {
     "allowedDomains": [
-      "*"
-    ],
-    "reasoning": "Wildcard is needed to use the plugin with companies' self-hosted CI instance"
+      "none"
+    ]
   },
   "menu": [
     {
