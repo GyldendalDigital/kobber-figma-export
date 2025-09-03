@@ -136,10 +136,9 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
         extensions: {
           [config.key.extensionPluginData]: {
             mode: settings.modeInTokenValue ? mode.name : undefined,
-            collection: collection,
             scopes: variable.scopes,
             [config.key.extensionVariableStyleId]: variable.id,
-            exportKey: tokenTypes.variables.key as tokenExportKeyType
+            exportKey: tokenTypes.variables.key as tokenExportKeyType // required for exporting json
           }
         }
       }

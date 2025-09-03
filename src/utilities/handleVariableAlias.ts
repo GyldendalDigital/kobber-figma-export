@@ -27,7 +27,7 @@ async function handleVariableAlias (
   }
 
   return {
-    description: variable.description || '',
+    description: variable.description || undefined,
     exportKey: tokenTypes.variables.key as tokenExportKeyType,
     category,
     values: `{${collection.name.toLowerCase()}.${changeNotation(
