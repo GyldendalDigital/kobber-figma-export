@@ -14,12 +14,22 @@ async function handleVariableAlias (
   const collection = await figma.variables.getVariableCollectionByIdAsync(
     resolvedAlias.variableCollectionId
   )
+  const resolvedVariable = Object.values(resolvedAlias.valuesByMode)[0] as { type: string, id: string }
+
+  // find type of the original value when resolving alias for alias
+  let category: string
+
+  if (resolvedVariable.type === 'VARIABLE_ALIAS') {
+    const resolvedOriginalValue = await handleVariableAlias(variable, resolvedVariable, mode, variable.aliasSameMode || aliasSameMode)
+    category = resolvedOriginalValue.category
+  } else {
+    category = getVariableTypeByValue(resolvedVariable)
+  }
+
   return {
     description: variable.description || '',
     exportKey: tokenTypes.variables.key as tokenExportKeyType,
-    category: getVariableTypeByValue(
-      Object.values(resolvedAlias.valuesByMode)[0]
-    ),
+    category,
     values: `{${collection.name.toLowerCase()}.${changeNotation(
       resolvedAlias.name,
       '/',
